@@ -6,6 +6,15 @@ name = "pypi"
 [dev-packages]
 
 [packages]
+numpy = "*"
+scipy = "*"
+matplotlib = "*"
+ipython = "*"
+jupyter = "*"
+pandas = "*"
+sympy = "*"
+nose = "*"
+pylint = "*"
 
 [requires]
 python_version = "3.5"

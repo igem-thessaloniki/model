@@ -7,19 +7,19 @@ c = 0
 # cooperativity of repressor binding
 n = 1.0
 # transcription rates
-aR = 1.0
+aR = 3.0
 aGmax = 1.0
 aGmin = 0.0001
 # degradation rates
 yR = 0.2
 yG = 0.8
-yM = 1.0
+yM = 0.5
 # translation rates
-bR = 1.0
+bR = 3.0
 bG = 1.0
 # on and off rates of repressor binding to the promoter
-kRon = 10
-kRoff = 0.01
+kRon = 0.9
+kRoff = 4000
 kDn = kRoff / kRon
 
 def model(z, t):
@@ -43,12 +43,12 @@ def model(z, t):
     return dzdt
 
 z = []
-for i in range(50, 1000, 25):
+for i in range(100, 200, 10):
     c = i
     t = np.linspace(0, 20, 1000)
     z0 = [0, 0, c, 0, 0, 0]
     z = odeint(model, z0, t)
-    print(c, z[:, 5][-1])
+    print(c,z[:, 5][-1])
 
 # plt.plot(t,z[:,0],'b-',label='mR')
 # plt.plot(t,z[:,1],'r-',label='R')

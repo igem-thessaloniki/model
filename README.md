@@ -1,1 +1,1 @@
-# model
+Our project model

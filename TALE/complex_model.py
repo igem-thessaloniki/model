@@ -58,24 +58,30 @@ def wrap(c, aR, aGmax, aGmin, yR, yG, yM, bR, bG):
     return results
 
 
-final = False
+final_results = []
 for copy_n in range(100, 200, 10):
     t = np.linspace(0, 20, 1000)
     z = wrap(copy_n, aR, aGmax, aGmin, yR, yG, yM, bR, bG)
     final = z[0]
     for i in range(1, N):
         final += z[i]
+    if False:
+        # plt.plot(t,final[:,0],'b-',label='mR')
+        # plt.plot(t,final[:,1],'r-',label='R')
+        plt.plot(t,final[:,2],'b-.',label='PG')
+        plt.plot(t,final[:,3],'r-.',label='PGR')
+        plt.plot(t,final[:,4],'b--',label='mG')
+        plt.plot(t,final[:,5],'g-',label='G')
+        plt.ylabel('concentration')
+        plt.xlabel('time')
+        plt.legend(loc='best')
+        plt.show()
     final /= N
-    print(copy_n,final[:, 5][-1])
+    final_results.append(final[:, 5][-1])
 
-t = np.linspace(0, 20, 1000)
-# plt.plot(t,final[:,0],'b-',label='mR')
-# plt.plot(t,final[:,1],'r-',label='R')
-plt.plot(t,final[:,2],'b-.',label='PG')
-plt.plot(t,final[:,3],'r-.',label='PGR')
-plt.plot(t,final[:,4],'b--',label='mG')
-plt.plot(t,final[:,5],'g-',label='G')
-plt.ylabel('concentration')
-plt.xlabel('time')
+plt.plot(range(100, 200, 10),final_results,'g-',label='Model')
+plt.plot(range(100, 200, 10),range(100, 200, 10),'r-.',label='Reality')
+plt.ylabel('GOI')
+plt.xlabel('Copy Number')
 plt.legend(loc='best')
 plt.show()

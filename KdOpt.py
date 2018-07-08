@@ -1,4 +1,6 @@
 import numpy as np
+import TALE.simple_model as sm
+from scipy.integrate import odeint
 np.random.seed(0)
 
 NO_OF_PARAMETERS=2
@@ -16,7 +18,10 @@ def outofbounds(index,value):
     return True
 
 def calcDev(w):
-    return (50*w[0]- 20*w[1])
+    sm.kRon = w[0]
+    sm.kRoff = w[1]
+    r = sm.main()
+    return (20*r['max_goi']- 50 * r['min_goi'])
 
 # the function we want to optimize
 def f(w):

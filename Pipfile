@@ -15,6 +15,7 @@ pandas = "*"
 sympy = "*"
 nose = "*"
 pylint = "*"
+uncertainties = "*"
 
 [requires]
 python_version = "3.5"
